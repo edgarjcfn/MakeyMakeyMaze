@@ -4,6 +4,7 @@ using System.Collections;
 public class Player : MonoBehaviour {
 
 	private Sonar _sonar;
+	public float time;
 
 	public float moveSpeed;
 
@@ -24,5 +25,26 @@ public class Player : MonoBehaviour {
 
 		//transform.Translate(horizontalTranslate, 0, verticalTranslate);
 		rigidbody.AddForce(horizontalTranslate, 0, verticalTranslate, ForceMode.VelocityChange);
+
+		time -= Time.deltaTime;
+
+		if (time <= 0)
+		{
+			Application.LoadLevel("GameOver");
+		}
+	}
+
+	void OnTriggerEnter(Collider other)
+	{
+		if (other.gameObject.tag == "GameOver")
+		{
+			Application.LoadLevel("You Win");
+		}
+	}
+
+	void OnGUI()
+	{
+		GUI.color = Color.green;
+		GUI.Label(new Rect(10, 10, 200, 100), "Time: " + (int) time);
 	}
 }
