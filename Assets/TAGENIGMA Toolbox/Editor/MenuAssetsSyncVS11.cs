@@ -291,10 +291,10 @@ __TEMPLATE_PROJECT_HINT__
     <Reference Include=""System.XML"" />
 	<Reference Include=""System.Core"" />
 	<Reference Include=""UnityEngine"">
-	  <HintPath>__PATH_UNITY_EDITOR__\Data\Managed\UnityEngine.dll</HintPath>
+	  <HintPath>__PATH_UNITY_EDITOR__\UnityEngine.dll</HintPath>
 	</Reference>
 	<Reference Include=""UnityEditor"">
-	  <HintPath>__PATH_UNITY_EDITOR__\Data\Managed\UnityEditor.dll</HintPath>
+	  <HintPath>__PATH_UNITY_EDITOR__\UnityEditor.dll</HintPath>
 	</Reference>
   </ItemGroup>
   <ItemGroup>
