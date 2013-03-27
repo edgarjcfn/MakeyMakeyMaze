@@ -1,15 +1,17 @@
 using UnityEngine;
 using System.Collections;
+using Injection;
 
 public class Player : MonoBehaviour {
 
 	private Sonar _sonar;
-	public float time;
 
+	[InjectFromPlayerPrefs("Move Speed")]
 	public float moveSpeed;
 
 	// Use this for initialization
 	void Start () {
+		this.Inject();
 		_sonar = transform.Find("Sonar").GetComponent<Sonar>();
 	}
 	
@@ -23,15 +25,7 @@ public class Player : MonoBehaviour {
 		var horizontalTranslate = Input.GetAxis("Horizontal") * moveSpeed * Time.deltaTime;
 		var verticalTranslate = Input.GetAxis("Vertical") * moveSpeed * Time.deltaTime;
 
-		//transform.Translate(horizontalTranslate, 0, verticalTranslate);
 		rigidbody.AddForce(horizontalTranslate, 0, verticalTranslate, ForceMode.VelocityChange);
-
-		time -= Time.deltaTime;
-
-		if (time <= 0)
-		{
-			Application.LoadLevel("GameOver");
-		}
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -40,11 +34,5 @@ public class Player : MonoBehaviour {
 		{
 			Application.LoadLevel("You Win");
 		}
-	}
-
-	void OnGUI()
-	{
-		GUI.color = Color.green;
-		GUI.Label(new Rect(10, 10, 200, 100), "Time: " + (int) time);
 	}
 }
