@@ -1,9 +1,18 @@
 using UnityEngine;
 using System.Collections;
+using Injection;
 
 public class Timer : MonoBehaviour {
 
+	private UILabel _timerLabel;
+
 	public float time;
+
+	void Start()
+	{
+		//this.Inject();
+		_timerLabel = GameObject.Find("TimerLabel").GetComponent<UILabel>();
+	}
 
 	void Update () {
 
@@ -13,11 +22,7 @@ public class Timer : MonoBehaviour {
 		{
 			Application.LoadLevel("GameOver");
 		}
-	}
 
-	void OnGUI()
-	{
-		GUI.color = Color.green;
-		GUI.Label(new Rect(10, 10, 200, 100), "Time: " + (int)time);
+		_timerLabel.text =((int) time).ToString();
 	}
 }

@@ -46,7 +46,7 @@ public static class Settings {
 	{
 		get
 		{
-			return PlayerPrefs.GetString(_settingsKey).Split(',');
+			return PlayerPrefs.GetString(_settingsKey).Split(new char[]{','}, StringSplitOptions.RemoveEmptyEntries);
 		}
 	}
 
